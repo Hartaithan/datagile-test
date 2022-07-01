@@ -1,5 +1,6 @@
 export interface ICounterItem {
-  count: number;
+  id: number;
+  value: number;
 }
 
 export interface ICounterState {
@@ -7,10 +8,10 @@ export interface ICounterState {
 }
 
 export enum CounterActionTypes {
-  ADD_COUNTER = "AddCounterAction",
-  DELETE_COUNTER = "DeleteCounterAction",
-  INCREMENT_COUNTER = "IncrementCounterAction",
-  DECREMENT_COUNTER = "DecrementCounterAction",
+  ADD_COUNTER = "ADD_COUNTER",
+  DELETE_COUNTER = "DELETE_COUNTER",
+  INCREMENT_COUNTER = "INCREMENT_COUNTER",
+  DECREMENT_COUNTER = "DECREMENT_COUNTER",
 }
 
 export interface AddCounterAction {

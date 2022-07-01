@@ -12,7 +12,9 @@ const counterReducer = (
 ): ICounterItem[] => {
   switch (action.type) {
     case CounterActionTypes.ADD_COUNTER:
-      return [...state];
+      const id = state.length > 0 ? state[state.length - 1].id + 1 : 1;
+      const newCounter: ICounterItem = { id, value: 0 };
+      return [...state, newCounter];
     case CounterActionTypes.DELETE_COUNTER:
       return [...state];
     case CounterActionTypes.INCREMENT_COUNTER:
