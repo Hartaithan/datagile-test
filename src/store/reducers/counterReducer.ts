@@ -1,10 +1,29 @@
 import {
   CounterAction,
   CounterActionTypes,
+  DecrementCounterAction,
   ICounterItem,
+  IncrementCounterAction,
 } from "../../models/CounterModel";
 
 const initialState: ICounterItem[] = [];
+
+const mutateCounter = (
+  counter: ICounterItem,
+  action: IncrementCounterAction | DecrementCounterAction
+) => {
+  if (counter.id !== action.payload) {
+    return counter;
+  }
+  switch (action.type) {
+    case CounterActionTypes.INCREMENT_COUNTER:
+      return { ...counter, value: counter.value + 1 };
+    case CounterActionTypes.DECREMENT_COUNTER:
+      return { ...counter, value: counter.value - 1 };
+    default:
+      return counter;
+  }
+};
 
 const counterReducer = (
   state = initialState,
@@ -16,14 +35,11 @@ const counterReducer = (
       const newCounter: ICounterItem = { id, value: 0 };
       return [...state, newCounter];
     case CounterActionTypes.DELETE_COUNTER:
-      const counters = [...state].filter(
-        (counter) => counter.id !== action.payload
-      );
-      return counters;
+      return [...state].filter((counter) => counter.id !== action.payload);
     case CounterActionTypes.INCREMENT_COUNTER:
-      return [...state];
+      return [...state].map((counter) => mutateCounter(counter, action));
     case CounterActionTypes.DECREMENT_COUNTER:
-      return [...state];
+      return [...state].map((counter) => mutateCounter(counter, action));
     default:
       return state;
   }
