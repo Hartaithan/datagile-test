@@ -16,7 +16,10 @@ const counterReducer = (
       const newCounter: ICounterItem = { id, value: 0 };
       return [...state, newCounter];
     case CounterActionTypes.DELETE_COUNTER:
-      return [...state];
+      const counters = [...state].filter(
+        (counter) => counter.id !== action.payload
+      );
+      return counters;
     case CounterActionTypes.INCREMENT_COUNTER:
       return [...state];
     case CounterActionTypes.DECREMENT_COUNTER:
