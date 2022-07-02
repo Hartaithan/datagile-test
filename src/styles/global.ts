@@ -7,11 +7,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     color: #ffffff;
-    scrollbar-width: thin;
-    scrollbar-color: #333333 #ffffff;
-    -webkit-font-feature-settings: "lnum";
-    -moz-font-feature-settings: "lnum";
-    font-feature-settings: "lnum";
   }
   html, body, #root {
     height: 100%;
@@ -22,8 +17,12 @@ const GlobalStyle = createGlobalStyle`
     background: #070707;
   }
   .App {
+    height: 100%;
     max-width: 1080px;
     margin: 0 auto;
+  }
+  ::-webkit-scrollbar {
+    display: none; 
   }
 `;
 

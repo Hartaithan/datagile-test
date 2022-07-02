@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import useActions from "../hooks/useActions";
 import Button from "./Button";
 import Heading from "./Heading";
 
@@ -13,10 +14,11 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const { addCounterAction } = useActions();
   return (
     <Container>
       <Heading>Counter</Heading>
-      <Button>Add counter</Button>
+      <Button onClick={() => addCounterAction()}>Add counter</Button>
     </Container>
   );
 };
