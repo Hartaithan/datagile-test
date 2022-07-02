@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <FillContainer>
         {counters.length === 0 && (
-          <Empty>Counters have not yet been added</Empty>
+          <Empty>counters_have_not_yet_been_added</Empty>
         )}
         {counters.length > 0 && (
           <Grid>

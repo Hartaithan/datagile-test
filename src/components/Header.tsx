@@ -17,8 +17,8 @@ const Header: React.FC = () => {
   const { addCounterAction } = useActions();
   return (
     <Container>
-      <Heading>Counter</Heading>
-      <Button onClick={() => addCounterAction()}>Add counter</Button>
+      <Heading>__counter</Heading>
+      <Button onClick={() => addCounterAction()}>add_counter</Button>
     </Container>
   );
 };

@@ -14,14 +14,23 @@ const Container = styled.div`
   justify-content: center;
   aspect-ratio: 1 / 1;
   background: #141414;
-  border-radius: 12px;
   z-index: 0;
   overflow: hidden;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 10%,
+    100% 90%,
+    90% 100%,
+    10% 100%,
+    0% 90%,
+    0% 10%
+  );
 `;
 
 const Value = styled.p`
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 48px;
+  font-weight: 500;
 `;
 
 const Background = styled.p`
@@ -31,10 +40,11 @@ const Background = styled.p`
   z-index: -1;
   transform: translate(-60%, -50%);
   font-size: 186px;
-  font-weight: 900;
+  font-weight: 700;
   opacity: 0.05;
   font-style: italic;
   text-align: center;
+  -webkit-text-stroke: 8px #ffffff;
 `;
 
 const Buttons = styled.div`
@@ -44,22 +54,24 @@ const Buttons = styled.div`
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 12px;
 `;
 
 const Button = styled.button`
   height: 30px;
   width: calc(50% - 5px);
   border: none;
-  background: #070707;
-  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
   font-weight: 700;
-  &:hover,
-  &:active {
-    background: #2e2e2e;
-  }
+  background: #070707;
+  background: linear-gradient(45deg, transparent 4px, #070707 4px),
+    linear-gradient(135deg, transparent 4px, #070707 4px),
+    linear-gradient(225deg, transparent 4px, #070707 4px),
+    linear-gradient(315deg, transparent 4px, #070707 4px);
+  background-position: bottom left, top left, top right, bottom right;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 `;
 
 const Counter: React.FC<ICounterProps> = (props) => {
