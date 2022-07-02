@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   body {
+    position: relative;
     background: #070707;
   }
   .App {
