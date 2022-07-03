@@ -5,6 +5,7 @@ export interface ICounterItem {
 }
 
 export interface ICounterState {
+  index: number;
   counters: ICounterItem[];
 }
 

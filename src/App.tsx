@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import useTypedSelector from "./hooks/useTypedSelector";
 
 const App = () => {
-  const counters = useTypedSelector((state) => state.counters);
+  const { counters } = useTypedSelector((state) => state.counters);
   return (
     <div className="App">
       <Header />
