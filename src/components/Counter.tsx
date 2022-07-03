@@ -101,9 +101,20 @@ const Button = styled.button`
   background-repeat: no-repeat;
 `;
 
+const Nth = styled.div`
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: #ffffff;
+  z-index: 1;
+  transform: rotate(-45deg);
+`;
+
 const Counter: React.FC<ICounterProps> = (props) => {
   const { counter } = props;
-  const { value } = counter;
+  const { value, nth } = counter;
   const {
     incrementCounterAction,
     decrementCounterAction,
@@ -119,6 +130,7 @@ const Counter: React.FC<ICounterProps> = (props) => {
         <Button onClick={() => incrementCounterAction(counter.id)}>+</Button>
       </Buttons>
       <Delete onClick={() => deleteCounterAction(counter.id)}>X</Delete>
+      {nth && <Nth />}
     </Container>
   );
 };
