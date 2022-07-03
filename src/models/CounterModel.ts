@@ -1,6 +1,7 @@
 export interface ICounterItem {
   id: number;
   value: number;
+  nth: boolean;
 }
 
 export interface ICounterState {

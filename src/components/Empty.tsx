@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Empty = styled.text`
+const Empty = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
