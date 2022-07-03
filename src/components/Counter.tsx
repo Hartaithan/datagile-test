@@ -7,6 +7,22 @@ interface ICounterProps {
   counter: ICounterItem;
 }
 
+const Delete = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 30%;
+  width: 30%;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+`;
+
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -26,6 +42,10 @@ const Container = styled.div`
     0% 90%,
     0% 10%
   );
+  &:hover ${Delete} {
+    opacity: 1;
+    pointer-events: all;
+  }
 `;
 
 const Value = styled.p`
@@ -77,7 +97,11 @@ const Button = styled.button`
 const Counter: React.FC<ICounterProps> = (props) => {
   const { counter } = props;
   const { value } = counter;
-  const { incrementCounterAction, decrementCounterAction } = useActions();
+  const {
+    incrementCounterAction,
+    decrementCounterAction,
+    deleteCounterAction,
+  } = useActions();
 
   return (
     <Container>
@@ -87,6 +111,7 @@ const Counter: React.FC<ICounterProps> = (props) => {
         <Button onClick={() => decrementCounterAction(counter.id)}>-</Button>
         <Button onClick={() => incrementCounterAction(counter.id)}>+</Button>
       </Buttons>
+      <Delete onClick={() => deleteCounterAction(counter.id)}>X</Delete>
     </Container>
   );
 };
