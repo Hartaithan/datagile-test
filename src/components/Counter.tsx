@@ -7,6 +7,10 @@ interface ICounterProps {
   counter: ICounterItem;
 }
 
+interface IValueProps {
+  long: boolean;
+}
+
 const Delete = styled.button`
   position: absolute;
   top: 5px;
@@ -48,9 +52,12 @@ const Container = styled.div`
   }
 `;
 
-const Value = styled.p`
-  font-size: 48px;
+const Value = styled.p<IValueProps>`
+  font-size: ${(props) => (props.long ? "24px" : "36px")};
   font-weight: 500;
+  word-break: break-all;
+  text-align: center;
+  padding: 0 10px;
 `;
 
 const Background = styled.p`
@@ -105,7 +112,7 @@ const Counter: React.FC<ICounterProps> = (props) => {
 
   return (
     <Container>
-      <Value>{value}</Value>
+      <Value long={value.toString().length >= 7}>{value}</Value>
       <Background>{value}</Background>
       <Buttons>
         <Button onClick={() => decrementCounterAction(counter.id)}>-</Button>

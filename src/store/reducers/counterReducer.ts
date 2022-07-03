@@ -32,7 +32,8 @@ const counterReducer = (
   switch (action.type) {
     case CounterActionTypes.ADD_COUNTER:
       const id = state.length > 0 ? state[state.length - 1].id + 1 : 1;
-      const newCounter: ICounterItem = { id, value: 0 };
+      const total = state.reduce((n, item) => n + item.value, 0);
+      const newCounter: ICounterItem = { id, value: total };
       return [...state, newCounter];
     case CounterActionTypes.DELETE_COUNTER:
       return [...state].filter((counter) => counter.id !== action.payload);
