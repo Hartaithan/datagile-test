@@ -120,16 +120,32 @@ const Counter: React.FC<ICounterProps> = (props) => {
     decrementCounterAction,
     deleteCounterAction,
   } = useActions();
+  let interval = React.useRef<NodeJS.Timer | null>(null);
+
+  React.useEffect(() => {
+    if (nth) {
+      interval.current = setInterval(() => {
+        incrementCounterAction(counter.id);
+      }, 1000);
+    }
+    return () => {
+      if (interval.current) {
+        clearInterval(interval.current);
+      }
+    };
+  }, []); // eslint-disable-line
 
   return (
     <Container>
       <Value long={value.toString().length >= 7}>{value}</Value>
       <Background>{value}</Background>
-      <Buttons>
-        <Button onClick={() => decrementCounterAction(counter.id)}>-</Button>
-        <Button onClick={() => incrementCounterAction(counter.id)}>+</Button>
-      </Buttons>
       <Delete onClick={() => deleteCounterAction(counter.id)}>X</Delete>
+      {!nth && (
+        <Buttons>
+          <Button onClick={() => decrementCounterAction(counter.id)}>-</Button>
+          <Button onClick={() => incrementCounterAction(counter.id)}>+</Button>
+        </Buttons>
+      )}
       {nth && <Nth />}
     </Container>
   );
