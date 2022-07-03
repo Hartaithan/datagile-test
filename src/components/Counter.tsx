@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useActions from "../hooks/useActions";
+import useInterval from "../hooks/useInterval";
 import { ICounterItem } from "../models/CounterModel";
 
 interface ICounterProps {
@@ -120,20 +121,13 @@ const Counter: React.FC<ICounterProps> = (props) => {
     decrementCounterAction,
     deleteCounterAction,
   } = useActions();
-  let interval = React.useRef<NodeJS.Timer | null>(null);
 
-  React.useEffect(() => {
-    if (nth) {
-      interval.current = setInterval(() => {
-        incrementCounterAction(counter.id);
-      }, 1000);
-    }
-    return () => {
-      if (interval.current) {
-        clearInterval(interval.current);
-      }
-    };
-  }, []); // eslint-disable-line
+  useInterval(
+    () => {
+      nth && incrementCounterAction(counter.id);
+    },
+    nth ? 1000 : null
+  );
 
   return (
     <Container>
