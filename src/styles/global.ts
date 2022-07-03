@@ -24,6 +24,11 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
     display: none; 
   }
+  @media (max-width: 1200px) {
+    .App {
+      max-width: 90%;
+    }
+  }
 `;
 
 export default GlobalStyle;

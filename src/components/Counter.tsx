@@ -26,6 +26,10 @@ const Delete = styled.button`
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease-in-out;
+  @media (max-width: 768px) {
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
 `;
 
 const Container = styled.div`
